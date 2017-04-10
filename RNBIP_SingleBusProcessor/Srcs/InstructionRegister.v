@@ -11,6 +11,6 @@ module InstructionRegister(
     always @(*)
     begin
         if(L_IR)
-            OC_out = dataBus_in s[7:0];
+            OC_out = dataBus_in[7:0];
     end
 endmodule
