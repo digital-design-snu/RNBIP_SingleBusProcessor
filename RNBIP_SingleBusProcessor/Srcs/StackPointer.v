@@ -6,15 +6,15 @@ input               D_SP,
 input               E_SP,
 //input               L_SP,
 input				CLK,
-input       [7:0]   SP_input_Bus,
-output      [7:0]   SP_output_Bus,
-output      [7:0]	SP_address// Input to Address Selector
+input       [15:0]   SP_input_Bus,
+output      [15:0]   SP_output_Bus,
+output      [15:0]	SP_address// Input to Address Selector
 );                        
 
-reg [7:0] SP_address_reg;
+reg [15:0] SP_address_reg;
 
 initial
-	SP_address_reg = 8'h00;
+	SP_address_reg = 16'h0000;
 
 assign SP_output_Bus = SP_address_reg;
 assign SP_address = D_SP?(SP_address_reg-1):SP_address_reg;

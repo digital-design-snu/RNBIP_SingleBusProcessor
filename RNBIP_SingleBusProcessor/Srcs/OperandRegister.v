@@ -2,18 +2,17 @@
 
 module OperandRegister(
 	       //inout  [7:0]   dataBus,
-	         input     [7:0]   dataBusIn, 
-	         output    [7:0]   databusOut,
-	
-	output [7:0]   toALU,
-	output [7:0]   OR_PC,
+	input     [15:0]   dataBusIn, 
+	output    [15:0]   databusOut,
+	output [15:0]   toALU,
+	output [15:0]   OR_PC,
 	input 			E_OR,
 	input 			L_OR,
 	input 			CLK
 );
 	//reg [7:0]	OR_out_Bus;
-	reg [7:0] 	OR_data;
-	wire [7:0] OR_in_Bus;
+	reg [15:0] 	OR_data;
+	wire [15:0] OR_in_Bus;
     
 	           //assign dataBus = (E_OR)?OR_data:8'hzz;
 	           //assign OR_in_Bus = dataBus;

@@ -3,18 +3,18 @@
 module ProgramCounter(
     input				E_PC,I_PC,L_PC,
     input				CLK,
-    input       [7:0]   OR,
-    input		[7:0]	dataBus_in,
-    output      [7:0]   dataBus_out,
-    output      [7:0]   toAS
+    input       [15:0]   OR,
+    input		[15:0]	dataBus_in,
+    output      [15:0]   dataBus_out,
+    output      [15:0]   toAS
 );
 
-wire	[7:0]	PC_in_Bus;
-wire	[7:0]	PC_out_Bus;
-reg		[7:0]	PC_reg;			// = [PC]  
+wire	[15:0]	PC_in_Bus;
+wire	[15:0]	PC_out_Bus;
+reg		[15:0]	PC_reg;			// = [PC]  
 //reg     [7:0]   tempReg;                      
 initial
-PC_reg = 8'b0000_0000;
+PC_reg = 16'h0000;
 
 assign dataBus_out = PC_out_Bus;
 assign  PC_in_Bus = dataBus_in;

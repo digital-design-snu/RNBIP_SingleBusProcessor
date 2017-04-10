@@ -25,28 +25,28 @@ module Io_GPIB(
     input Lop,
     input Clk,
     input [2:0] ioSel,
-    output [7:0] io0,
-    output [7:0] io1,
-    output [7:0] io2,
-    output [7:0] io3,
-    output [7:0] io4,
-    output [7:0] io5,
-    output [7:0] io6,
-    output [7:0] io7,  
-    input [7:0] io0I,
-    input [7:0] io1I,
-    input [7:0] io2I,
-    input [7:0] io3I,
-    input [7:0] io4I,
-    input [7:0] io5I,
-    input [7:0] io6I,
-    input [7:0] io7I,  
-    input [7:0] dataBusIn,
-    output [7:0] dataBusOut
+    output [15:0] io0,
+    output [15:0] io1,
+    output [15:0] io2,
+    output [15:0] io3,
+    output [15:0] io4,
+    output [15:0] io5,
+    output [15:0] io6,
+    output [15:0] io7,  
+    input [15:0] io0I,
+    input [15:0] io1I,
+    input [15:0] io2I,
+    input [15:0] io3I,
+    input [15:0] io4I,
+    input [15:0] io5I,
+    input [15:0] io6I,
+    input [15:0] io7I,  
+    input [15:0] dataBusIn,
+    output [15:0] dataBusOut
     );
     
     
-reg [7:0] outRegs [7:0];
+reg [15:0] outRegs [7:0];
 initial begin
 outRegs[0] = 0 ;
 outRegs[1] = 0 ;
@@ -79,6 +79,6 @@ assign dataBusOut =     (ioSel== 3'b000 & (Eip ) )?      io0I    : (
                         (ioSel== 3'b100 & (Eip ) )?      io4I    : (
                         (ioSel== 3'b101 & (Eip ) )?      io5I    : (
                         (ioSel== 3'b110 & (Eip ) )?      io6I    : (       
-                        (ioSel== 3'b111 & (Eip ) )?      io7I    : 8'hzz )))))));
+                        (ioSel== 3'b111 & (Eip ) )?      io7I    : 16'h0000 )))))));
                         
 endmodule
