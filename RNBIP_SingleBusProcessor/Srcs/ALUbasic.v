@@ -1,11 +1,11 @@
 `timescale 1ns / 1ps
 
 module ALUbasic(
-	output      [7:0]   Out,           // Output 8 bit
+	output      [15:0]   Out,           // Output 8 bit
 	output      [3:0]   flagArray,     // not holding only driving EDI
 	input 			    Cin,          // Carry input bit
-	input 		[7:0] 	A_IN,
-	input       [7:0]   B_IN,     // 8-bit data input
+	input 		[15:0] 	A_IN,
+	input       [15:0]   B_IN,     // 8-bit data input
 	input 		[3:0] 	S_AF        // Most significant 4 bits of the op code
 	);
 	//legacy def
@@ -36,14 +36,14 @@ module ALUbasic(
     wire OddParity;
     wire Positive;
     
-    assign {Cout,Out} = (S_AF== ZERO )?        9'h00         : (
+    assign {Cout,Out} = (S_AF== ZERO )?        17'h0000         : (
                         (S_AF== A )?           A_IN          : (
                         (S_AF== NOT )?         ~A_IN         : (
                         (S_AF== B )?           B_IN          : (
                         (S_AF== INC_A )?       A_IN+1        : (
                         (S_AF== DCR_A )?       A_IN-1        : (
                         (S_AF== SLC_A )?       {A_IN,Cin}    : (        //Rotate
-                        (S_AF== SRC_A )?       {A_IN[0],Cin,A_IN[7:1]}    : (      //Rotate
+                        (S_AF== SRC_A )?       {A_IN[0],Cin,A_IN[15:1]}    : (      //Rotate
                         (S_AF== ADD_AB )?      A_IN+B_IN     : (
                         (S_AF== SUB_AB )?      B_IN-A_IN     : (
                         (S_AF== ADD_ABC )?     A_IN+B_IN+Cin : (
@@ -51,11 +51,11 @@ module ALUbasic(
                         (S_AF== AND_AB )?      A_IN&B_IN     : (
                         (S_AF== OR_AB )?       A_IN|B_IN     : (
                         (S_AF== XOR_AB )?      A_IN^B_IN     : (
-                        (S_AF== XNA_AB )?      ~(A_IN^B_IN)  : 9'hzz )))))))))))))));
+                        (S_AF== XNA_AB )?      ~(A_IN^B_IN)  : 17'hzzzz )))))))))))))));
     
     assign  OddParity = ^Out;
     assign  Zero = ~(|Out);
-    assign  Positive = ~(Out[7]);
+    assign  Positive = ~(Out[15]);
     assign  flagArray = {OddParity,Positive,Cout,Zero};
     
 endmodule

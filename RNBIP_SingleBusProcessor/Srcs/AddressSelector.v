@@ -1,12 +1,12 @@
 `timescale 1ns / 1ps
 
 module AddressSelector(
-    input [7:0] PC_address_in,
-    input [7:0] SP_address_in,
-    input [7:0] R0_address_in,
+    input [15:0] PC_address_in,
+    input [15:0] SP_address_in,
+    input [15:0] R0_address_in,
     input S_PC,
     input S_SP,
-    output /*reg */[7:0] Address_Bus_out
+    output /*reg */[15:0] Address_Bus_out
     );
     /*always @(S_PC or S_SP)
     begin

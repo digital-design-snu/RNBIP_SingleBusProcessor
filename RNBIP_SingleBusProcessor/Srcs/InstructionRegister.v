@@ -3,7 +3,7 @@
 module InstructionRegister(
     input             CLK,
     input             L_IR,
-    input       [7:0] dataBus_in,
+    input       [15:0] dataBus_in,
     output reg  [7:0] OC_out
     );
     initial 
@@ -11,6 +11,6 @@ module InstructionRegister(
     always @(*)
     begin
         if(L_IR)
-            OC_out = dataBus_in;
+            OC_out = dataBus_in s[7:0];
     end
 endmodule

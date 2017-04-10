@@ -1,16 +1,16 @@
 `timescale 1ns / 1ps
 
 module MemCache(
-    input [7:0] Address,
+    input [15:0] Address,
                //inout [7:0] DataBus,
-                input [7:0]  dataBusIn,
-                output [7:0] dataBusOut,
+                input [15:0]  dataBusIn,
+                output [15:0] dataBusOut,
     input RD,
     input WR,
     input sClk    
     );
     
-    reg [7:0] blockMem[255:0];
+    reg [15:0] blockMem[65535:0];
     //reg [7:0]outHold;
     
                //assign DataBus  = (RD)?blockMem[Address] : 8'hzz;

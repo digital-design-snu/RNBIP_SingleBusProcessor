@@ -1,16 +1,16 @@
 `timescale 1ns / 1ps
 
 module RegisterArray(
-	inout 	 	[7:0] 		DataBus,
-	output 	 	[7:0] 		R0_out,	
-	input 		[7:0] 	 	ALU_out,
+	inout 	 	[15:0] 		DataBus,
+	output 	 	[15:0] 		R0_out,	
+	input 		[15:0] 	 	ALU_out,
 	input 		[2:0] 		RN_Reg_Sel,
 	input   	[4:0] 		Control_in,
-	input				clk1
+	input					clk1
 	);
 
-	reg 		[7:0]		Reg_Array	[7:0];
-    reg [7:0] RN_out_Bus;
+	reg 		[15:0]		Reg_Array	[7:0];
+    reg 		[15:0] 		RN_out_Bus;
 	initial
 	begin
 		Reg_Array[0] = 0;
@@ -75,7 +75,7 @@ begin
     
 	else 
 	begin
-		RN_out_Bus = 8'hZZ;
+		RN_out_Bus = 16'hZZZZ;
 	end
 end
 
