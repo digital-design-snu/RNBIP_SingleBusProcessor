@@ -21,7 +21,7 @@
 
 
 module busArbitrator(
-    output[7:0] dataBus,
+    output[15:0] dataBus,
     input RD,
     input E_PC,
     input E_SP,
@@ -29,12 +29,12 @@ module busArbitrator(
     input E_OR,
     input E_R0,
     input E_RN,
-    input [7:0] pcOut,
-    input [7:0] memOut,
-    input [7:0] orOut,
-    input [7:0] spOut,
-    input [7:0] raOut,
-    input [7:0] ioOut
+    input [15:0] pcOut,
+    input [15:0] memOut,
+    input [15:0] orOut,
+    input [15:0] spOut,
+    input [15:0] raOut,
+    input [15:0] ioOut
     );
     
     assign dataBus = (RD)? memOut :(
@@ -43,6 +43,6 @@ module busArbitrator(
                     (E_IP)? ioOut :(
                     (E_OR)? orOut :(
                     ( E_R0 | E_RN )? raOut :
-                     8'h00))))); 
+                     16'h0000))))); 
            
 endmodule

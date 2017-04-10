@@ -14,34 +14,34 @@ module Topmodule(
     wire E_OR, L_OR;            //Operand Register
     wire E_IP, L_OP;            //Input-Output
     wire E_FL, S_IF;            //Control Code Generator
-    wire [7:0]  dataBus;        //Data Bus
+    wire [15:0]  dataBus;        //Data Bus
 // END OF WIRES FOR CONTROL SIGNALS
 
 
 // HARDCODED WIRES
-    wire [7:0]  OR_ALU;
-    wire [7:0]  SP_AS;
-    wire [7:0]  PC_AS;
-    wire [7:0]  R0_AS;
-    wire [7:0]  ALU_RN;
+    wire [15:0]  OR_ALU;
+    wire [15:0]  SP_AS;
+    wire [15:0]  PC_AS;
+    wire [15:0]  R0_AS;
+    wire [15:0]  ALU_RN;
     wire [7:0]  opcode;
-    wire [7:0]  OR_PC;
+    wire [15:0]  OR_PC;
     wire [3:0]  ALU_FR;
     wire        ALU_FR_Carry;
     wire        FR_CG;
-    wire [7:0]  Address_Bus;
+    wire [15:0]  Address_Bus;
     wire        E_FLi;
     wire        S_IFi;
-    wire [7:0] PCOut;
-    wire [7:0] MEMOut;
-    wire [7:0] OROut;
-    wire [7:0] SPOut;
-    wire [7:0] RAOut;
-    wire [7:0] IOOut;
+    wire [15:0] PCOut;
+    wire [15:0] MEMOut;
+    wire [15:0] OROut;
+    wire [15:0] SPOut;
+    wire [15:0] RAOut;
+    wire [15:0] IOOut;
 // END OF HARDCODED WIRES
 
 
-    wire [7:0] ioOut0;
+    wire [15:0] ioOut0;
 
 
 

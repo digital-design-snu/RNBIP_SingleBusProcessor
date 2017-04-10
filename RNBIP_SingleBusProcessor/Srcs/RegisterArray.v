@@ -1,7 +1,8 @@
 `timescale 1ns / 1ps
 
 module RegisterArray(
-	inout 	 	[7:0] 		DataBus,
+	input 	 	[7:0] 		dataBus_in,
+	output      [7:0]       dataBus_out,
 	output 	 	[7:0] 		R0_out,	
 	input 		[7:0] 	 	ALU_out,
 	input 		[2:0] 		RN_Reg_Sel,
@@ -10,7 +11,8 @@ module RegisterArray(
 	);
 
 	reg 		[7:0]		Reg_Array	[7:0];
-    reg [7:0] RN_out_Bus;
+    reg         [7:0]       RN_out_Bus;
+//    wire        [7:0]       outBus;
 	initial
 	begin
 		Reg_Array[0] = 0;
@@ -21,6 +23,8 @@ module RegisterArray(
 		Reg_Array[5] = 5;
 		Reg_Array[6] = 6;
 		Reg_Array[7] = 7;
+		
+		RN_out_Bus=0;
 	end
 
 assign S_AL= Control_in[4];
@@ -43,25 +47,18 @@ begin
     end 
    	else if (L_R0)
 	begin
-		Reg_Array[0]= (S_AL)?ALU_out:DataBus;
+		Reg_Array[0]= (S_AL)?ALU_out:dataBus_in;
 	end
 
 	else if (L_RN)
 	begin	
+		Reg_Array[RN_Reg_Sel] = (S_AL)?ALU_out:dataBus_in;
 		
-		case({RN_Reg_Sel[2:0]})
-		3'b000: Reg_Array[0]= (S_AL)?ALU_out:DataBus;
-		3'b001: Reg_Array[1]= (S_AL)?ALU_out:DataBus;
-		3'b010: Reg_Array[2]= (S_AL)?ALU_out:DataBus;
-		3'b011: Reg_Array[3]= (S_AL)?ALU_out:DataBus;
-		3'b100: Reg_Array[4]= (S_AL)?ALU_out:DataBus;
-		3'b101: Reg_Array[5]= (S_AL)?ALU_out:DataBus;
-		3'b110: Reg_Array[6]= (S_AL)?ALU_out:DataBus;
-		3'b111: Reg_Array[7]= (S_AL)?ALU_out:DataBus;
-		endcase
 	end
 end
-
+/*assign outBus = (E_R0==1'b1 || E_RN == 1'b1 ) ?
+                ((E_R0)?Reg_Array[0]:Reg_Array[RN_Reg_Sel]):
+                8'hzz;*/
 always @ (E_R0 or E_RN)
 begin
     if(E_R0)
@@ -73,14 +70,10 @@ begin
     RN_out_Bus = Reg_Array[RN_Reg_Sel];
     end
     
-	else 
-	begin
-		RN_out_Bus = 8'hZZ;
-	end
+	
 end
 
 assign R0_out = Reg_Array[0];
-assign DataBus = RN_out_Bus;
+assign dataBus_out = RN_out_Bus;
 
 endmodule
-
